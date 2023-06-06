@@ -1,6 +1,7 @@
 package com.example.parcialbiblioteca.service;
 
-import com.example.parcialbiblioteca.dto.UsuarioDTO;
+import com.example.parcialbiblioteca.dto.UsuarioInsertDTO;
+import com.example.parcialbiblioteca.dto.UsuarioUpdateDTO;
 import com.example.parcialbiblioteca.entity.Usuario;
 import com.example.parcialbiblioteca.exception.AttributeNotValidException;
 import com.example.parcialbiblioteca.exception.ResourceNotFoundException;
@@ -38,19 +39,19 @@ public class UsuarioService {
         return usuario.get();
     }
 
-    public Usuario post(UsuarioDTO usuarioDTO){
-        Usuario usuario = modelMapper.map(usuarioDTO, Usuario.class);
+    public Usuario post(UsuarioInsertDTO usuarioInsertDTO){
+        Usuario usuario = modelMapper.map(usuarioInsertDTO, Usuario.class);
         validateIfDuiExists(usuario);
         validateRol(usuario);
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario update(Long id, UsuarioDTO usuarioDTO){
+    public Usuario update(Long id, UsuarioUpdateDTO usuarioUpdateDTO){
         Optional<Usuario> usuarioInDB = usuarioRepository.findById(id);
         if(!usuarioInDB.isPresent()){
             throw new ResourceNotFoundException("No existe el usuario con el id: " + id);
         }
-        Usuario usuario = modelMapper.map(usuarioDTO, Usuario.class);
+        Usuario usuario = modelMapper.map(usuarioUpdateDTO, Usuario.class);
         usuario.setId(id);
         //update only the fields that are not null in usuario
         if(usuario.getNombre() == null){

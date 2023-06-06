@@ -1,6 +1,7 @@
 package com.example.parcialbiblioteca.service;
 
-import com.example.parcialbiblioteca.dto.LibroDTO;
+import com.example.parcialbiblioteca.dto.LibroInsertDTO;
+import com.example.parcialbiblioteca.dto.LibroUpdateDTO;
 import com.example.parcialbiblioteca.entity.Libro;
 import com.example.parcialbiblioteca.exception.AttributeNotValidException;
 import com.example.parcialbiblioteca.exception.ResourceNotFoundException;
@@ -8,7 +9,6 @@ import com.example.parcialbiblioteca.repository.LibroRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,17 +32,17 @@ public class LibroService {
         return libro.get();
     }
 
-    public Libro post(LibroDTO libroDTO){
-        Libro libro = modelMapper.map(libroDTO, Libro.class);
+    public Libro post(LibroInsertDTO libroInsertDTO){
+        Libro libro = modelMapper.map(libroInsertDTO, Libro.class);
         return libroRepository.save(libro);
     }
 
-    public Libro update(Long id, LibroDTO libroDTO){
+    public Libro update(Long id, LibroUpdateDTO libroUpdateDTO){
         Optional<Libro> libroInDB = libroRepository.findById(id);
         if(!libroInDB.isPresent()){
             throw new ResourceNotFoundException("No existe el libro con el id: " + id);
         }
-        Libro libro = modelMapper.map(libroDTO, Libro.class);
+        Libro libro = modelMapper.map(libroUpdateDTO, Libro.class);
         libro.setId(id);
         //update only the fields that are not null in libro
         if(libro.getTitulo() == null){
