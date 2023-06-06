@@ -1,6 +1,7 @@
 package com.example.parcialbiblioteca.controller;
 
-import com.example.parcialbiblioteca.dto.LibroDTO;
+import com.example.parcialbiblioteca.dto.LibroInsertDTO;
+import com.example.parcialbiblioteca.dto.LibroUpdateDTO;
 import com.example.parcialbiblioteca.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -22,11 +23,11 @@ public class LibroController {
         return libroService.getById(id);
     }
     @PostMapping(consumes = {"application/json", "application/x-www-form-urlencoded"})
-    public Object post(@Validated @RequestBody LibroDTO libro){
+    public Object post(@Validated @RequestBody LibroInsertDTO libro){
         return libroService.post(libro);
     }
     @PutMapping(value = "/{id}", consumes = {"application/json", "application/x-www-form-urlencoded"})
-    public Object update(@PathVariable("id") Long id, @Validated @RequestBody LibroDTO libro){
+    public Object update(@PathVariable("id") Long id, @Validated @RequestBody LibroUpdateDTO libro){
         return libroService.update(id, libro);
     }
     @DeleteMapping("/{id}")

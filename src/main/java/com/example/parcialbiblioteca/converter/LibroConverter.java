@@ -1,6 +1,6 @@
 package com.example.parcialbiblioteca.converter;
 
-import com.example.parcialbiblioteca.dto.LibroDTO;
+import com.example.parcialbiblioteca.dto.LibroUpdateDTO;
 import com.example.parcialbiblioteca.entity.Libro;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -8,15 +8,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class LibroConverter {
 
-    public LibroDTO entityToDto(Libro libro) {
+    public LibroUpdateDTO entityToDto(Libro libro) {
         ModelMapper modelMapper = new ModelMapper();
-        LibroDTO libroDTO = modelMapper.map(libro, LibroDTO.class);
-        return libroDTO;
+        LibroUpdateDTO libroUpdateDTO = modelMapper.map(libro, LibroUpdateDTO.class);
+        return libroUpdateDTO;
     }
 
-    public Libro dtoToEntity(LibroDTO libroDTO) {
+    public Libro dtoToEntity(LibroUpdateDTO libroUpdateDTO) {
         ModelMapper modelMapper = new ModelMapper();
-        Libro libro = modelMapper.map(libroDTO, Libro.class);
+        Libro libro = modelMapper.map(libroUpdateDTO, Libro.class);
         return libro;
     }
 }

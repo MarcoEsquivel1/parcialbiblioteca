@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class LibroDTO {
+public class LibroUpdateDTO {
     @Size(min = 3, max = 50, message = "El titulo debe tener entre 3 y 50 caracteres")
     private String titulo;
     @Size(min = 3, max = 50, message = "El slug debe tener entre 3 y 50 caracteres")
