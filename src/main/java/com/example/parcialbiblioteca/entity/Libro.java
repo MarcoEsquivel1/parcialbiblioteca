@@ -19,6 +19,8 @@ public class Libro {
     private Long id;
     @Column(name = "titulo")
     private String titulo;
+    @Column(name = "slug", unique = true)
+    private String slug;
     @Column(name = "autor")
     private String autor;
     @Column(name = "editorial")
@@ -31,4 +33,27 @@ public class Libro {
     private String idioma;
     @Column(name = "estado")
     private String estado;
+
+    @PrePersist
+    public void prePersist() {
+        this.estado = "DISPONIBLE";
+        if (this.slug == null) {
+            this.slug = this.titulo.toLowerCase().replace(" ", "_").replace("'", "");
+        }
+        this.slug = this.slug.toLowerCase().replace(" ", "_").replace("'", "");
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.slug = this.slug.toLowerCase().replace(" ", "_").replace("'", "");
+    }
+
+    public void prestarLibro() {
+        this.estado = "PRESTADO";
+    }
+
+    public void devolverLibro() {
+        this.estado = "DISPONIBLE";
+    }
+
 }
