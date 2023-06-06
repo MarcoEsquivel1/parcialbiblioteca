@@ -45,15 +45,12 @@ public class Libro {
 
     @PreUpdate
     public void preUpdate() {
-        this.slug = this.slug.toLowerCase().replace(" ", "_").replace("'", "");
-    }
-
-    public void prestarLibro() {
-        this.estado = "PRESTADO";
-    }
-
-    public void devolverLibro() {
-        this.estado = "DISPONIBLE";
+        if (this.slug != null) {
+            this.slug = this.slug.toLowerCase().replace(" ", "_").replace("'", "");
+        }
+        if (this.titulo != null) {
+            this.slug = this.titulo.toLowerCase().replace(" ", "_").replace("'", "");
+        }
     }
 
 }

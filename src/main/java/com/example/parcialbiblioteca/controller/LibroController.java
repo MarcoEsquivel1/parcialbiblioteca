@@ -25,4 +25,12 @@ public class LibroController {
     public Object post(@Validated @RequestBody LibroDTO libro){
         return libroService.post(libro);
     }
+    @PutMapping(value = "/{id}", consumes = {"application/json", "application/x-www-form-urlencoded"})
+    public Object update(@PathVariable("id") Long id, @Validated @RequestBody LibroDTO libro){
+        return libroService.update(id, libro);
+    }
+    @DeleteMapping("/{id}")
+    public Object delete(@PathVariable("id") Long id){
+        return libroService.delete(id);
+    }
 }
