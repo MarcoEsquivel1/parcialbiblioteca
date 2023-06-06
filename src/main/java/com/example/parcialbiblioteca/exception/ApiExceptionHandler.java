@@ -57,6 +57,15 @@ public class ApiExceptionHandler {
 
     }
 
+    @ExceptionHandler(value = AttributeNotValidException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public ErrorMessage attributeNotValidException(AttributeNotValidException ex) {
+        return new ErrorMessage(HttpStatus.BAD_REQUEST.value(),
+                new Date(),
+                ex.getMessage(),
+                "Attribute Not Valid");
+    }
+
     private Map<String, List<String>> getErrorsMap(List<String> errors) {
         Map<String, List<String>> errorResponse = new HashMap<>();
         errorResponse.put("errors", errors);
