@@ -20,16 +20,18 @@ public class Usuario {
     private String nombre;
     @Column(name = "apellido")
     private String apellido;
-    @Column(name = "dui")
+    @Column(name = "dui", unique = true)
     private String dui;
     @Column(name = "direccion")
     private String direccion;
     @Column(name = "telefono")
     private String telefono;
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", unique = true)
     private String email;
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
+    @Column(name = "rol")
+    private String rol;
     @Column(name = "fecha_inscripcion")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
