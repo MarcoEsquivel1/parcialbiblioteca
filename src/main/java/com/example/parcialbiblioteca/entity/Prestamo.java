@@ -42,7 +42,7 @@ public class Prestamo {
     @PrePersist
 
     public void prePersist() {
-        estado = "SIN VERIFICAR";
+        estado = "SIN DEVOLVER";
         fechaInscripcion = LocalDate.now();
     }
 
