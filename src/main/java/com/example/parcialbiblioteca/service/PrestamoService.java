@@ -100,9 +100,9 @@ public class PrestamoService {
         if(prestamo.getEstado() == null){
             prestamo.setEstado(prestamoInDB.get().getEstado());
         } else if (prestamo.getEstado().toUpperCase().equals("SIN DEVOLVER")){
-            prestamo.setEstado("SIN VERIFICAR");
+            prestamo.setEstado("SIN DEVOLVER");
         } else if (prestamo.getEstado().toUpperCase().equals("DEVULETO")){
-            prestamo.setEstado("VERIFICADO");
+            prestamo.setEstado("DEVUELTO");
         } else {
             throw new AttributeNotValidException("El estado del prestamo debe ser SIN DEVOLVER o DEVUELTO");
         }
