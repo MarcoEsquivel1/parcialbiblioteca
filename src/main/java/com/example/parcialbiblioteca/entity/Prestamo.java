@@ -10,18 +10,16 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "perstamos")
-public class Perstamo {
+@Table(name = "prestamos")
+public class Prestamo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-    @ManyToOne
-    @JoinColumn(name = "libro_id", referencedColumnName = "id")
-    private Libro libro;
-    @ManyToOne
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    private Usuario usuario;
+    @Column(name = "id_prestamo", nullable = false)
+    private Long idPrestamo;
+    @Column(name = "id_libro")
+    private Long idLibro;
+    @Column(name = "id_usuario")
+    private Long idUsuario;
     @Column(name = "fecha_inscripcion")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
@@ -33,8 +31,18 @@ public class Perstamo {
     @Column(name = "estado")
     private String estado;
 
+    @ManyToOne
+    @JoinColumn(name = "id_libro", insertable = false, updatable = false)
+    private Libro libro;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
+    private Usuario usuario;
+
     @PrePersist
+
     public void prePersist() {
+        estado = "SIN VERIFICAR";
         fechaInscripcion = LocalDate.now();
     }
 

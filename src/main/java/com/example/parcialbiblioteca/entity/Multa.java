@@ -14,11 +14,10 @@ import java.time.LocalDate;
 public class Multa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-    @OneToOne
-    @JoinColumn(name = "prestamo_id", referencedColumnName = "id")
-    private Perstamo prestamo;
+    @Column(name = "id_multa", nullable = false)
+    private Long idMulta;
+    @Column(name = "id_prestamo", nullable = false)
+    private Long idPrestamo;
     @Column(name = "monto")
     private Double monto;
     @Column(name = "estado")
@@ -29,6 +28,10 @@ public class Multa {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private LocalDate fechaPago;
+
+    @OneToOne
+    @JoinColumn(name = "id_prestamo", insertable = false, updatable = false)
+    private Prestamo prestamo;
 
     @PrePersist
     public void prePersist() {

@@ -43,7 +43,7 @@ public class LibroService {
             throw new ResourceNotFoundException("No existe el libro con el id: " + id);
         }
         Libro libro = modelMapper.map(libroUpdateDTO, Libro.class);
-        libro.setId(id);
+        libro.setIdLibro(id);
         //update only the fields that are not null in libro
         if(libro.getTitulo() == null){
             libro.setTitulo(libroInDB.get().getTitulo());
