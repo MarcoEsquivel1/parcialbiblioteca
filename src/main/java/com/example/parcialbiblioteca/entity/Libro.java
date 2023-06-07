@@ -15,8 +15,8 @@ import java.util.UUID;
 public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "id_libro", nullable = false)
+    private Long idLibro;
     @Column(name = "titulo")
     private String titulo;
     @Column(name = "slug", unique = true)

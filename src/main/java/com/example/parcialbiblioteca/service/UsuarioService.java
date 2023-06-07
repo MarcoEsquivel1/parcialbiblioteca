@@ -52,7 +52,7 @@ public class UsuarioService {
             throw new ResourceNotFoundException("No existe el usuario con el id: " + id);
         }
         Usuario usuario = modelMapper.map(usuarioUpdateDTO, Usuario.class);
-        usuario.setId(id);
+        usuario.setIdUsuario(id);
         //update only the fields that are not null in usuario
         if(usuario.getNombre() == null){
             usuario.setNombre(usuarioInDB.get().getNombre());
