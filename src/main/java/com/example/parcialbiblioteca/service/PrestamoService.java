@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static java.lang.System.out;
+
 @Service("prestamoService")
 public class PrestamoService {
     @Autowired
@@ -97,11 +99,12 @@ public class PrestamoService {
     }
 
     public void  validateEstado(Prestamo prestamo, Optional<Prestamo> prestamoInDB){
+        out.println(prestamo.getEstado());
         if(prestamo.getEstado() == null){
             prestamo.setEstado(prestamoInDB.get().getEstado());
         } else if (prestamo.getEstado().toUpperCase().equals("SIN DEVOLVER")){
             prestamo.setEstado("SIN DEVOLVER");
-        } else if (prestamo.getEstado().toUpperCase().equals("DEVULETO")){
+        } else if (prestamo.getEstado().toUpperCase().equals("DEVUELTO")){
             prestamo.setEstado("DEVUELTO");
         } else {
             throw new AttributeNotValidException("El estado del prestamo debe ser SIN DEVOLVER o DEVUELTO");
