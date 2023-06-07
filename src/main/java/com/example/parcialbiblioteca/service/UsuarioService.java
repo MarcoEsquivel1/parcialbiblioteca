@@ -42,6 +42,7 @@ public class UsuarioService {
     public Usuario post(UsuarioInsertDTO usuarioInsertDTO){
         Usuario usuario = modelMapper.map(usuarioInsertDTO, Usuario.class);
         validateIfDuiExists(usuario);
+        validateIfCorreoExists(usuario);
         validateRol(usuario);
         return usuarioRepository.save(usuario);
     }
@@ -79,6 +80,7 @@ public class UsuarioService {
             usuario.setFechaInscripcion(usuarioInDB.get().getFechaInscripcion());
         }
         validateIfDuiExists(usuario);
+        validateIfCorreoExists(usuario);
         validateRol(usuario, usuarioInDB);
         usuario.setRol(usuario.getRol().toUpperCase());
         Usuario usuarioUpdated = usuarioRepository.save(usuario);
@@ -117,6 +119,12 @@ public class UsuarioService {
     public void validateIfDuiExists(Usuario usuario){
         if(usuarioRepository.findByDui(usuario.getDui()).isPresent() && usuarioRepository.findByDui(usuario.getDui()).get().getIdUsuario() != usuario.getIdUsuario()){
             throw new AttributeNotValidException("Ya existe un usuario con el DUI: " + usuario.getDui());
+        }
+    }
+
+    public void validateIfCorreoExists(Usuario usuario){
+        if(usuarioRepository.findByEmail(usuario.getEmail()).isPresent() && usuarioRepository.findByEmail(usuario.getEmail()).get().getIdUsuario() != usuario.getIdUsuario()){
+            throw new AttributeNotValidException("Ya existe un usuario con el correo: " + usuario.getEmail());
         }
     }
 }
