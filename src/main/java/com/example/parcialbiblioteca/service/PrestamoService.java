@@ -66,6 +66,7 @@ public class PrestamoService {
             prestamo.setIdLibro(prestamoInDB.get().getIdLibro());
         }
         validateEstado(prestamo, prestamoInDB);
+        prestamo.setEstado(prestamo.getEstado().toUpperCase());
         return prestamoRepository.save(prestamo);
     }
 
@@ -92,11 +93,6 @@ public class PrestamoService {
         }
     }
 
-    public void validateFechaInscripcion(Prestamo prestamo, Optional<Prestamo> prestamoInDB){
-        if(prestamo.getFechaInscripcion() != null && prestamoInDB.isPresent()){
-            throw new AttributeNotValidException("No se puede modificar la fecha de inscripcion");
-        }
-    }
 
     public void  validateEstado(Prestamo prestamo, Optional<Prestamo> prestamoInDB){
         out.println(prestamo.getEstado());

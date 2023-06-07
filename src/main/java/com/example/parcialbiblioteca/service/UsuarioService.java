@@ -80,6 +80,7 @@ public class UsuarioService {
         }
         validateIfDuiExists(usuario);
         validateRol(usuario, usuarioInDB);
+        usuario.setRol(usuario.getRol().toUpperCase());
         Usuario usuarioUpdated = usuarioRepository.save(usuario);
         //replace password with null
         usuarioUpdated.setPassword(null);
@@ -114,7 +115,7 @@ public class UsuarioService {
     }
 
     public void validateIfDuiExists(Usuario usuario){
-        if(usuarioRepository.findByDui(usuario.getDui()).isPresent()){
+        if(usuarioRepository.findByDui(usuario.getDui()).isPresent() && usuarioRepository.findByDui(usuario.getDui()).get().getIdUsuario() != usuario.getIdUsuario()){
             throw new AttributeNotValidException("Ya existe un usuario con el DUI: " + usuario.getDui());
         }
     }
