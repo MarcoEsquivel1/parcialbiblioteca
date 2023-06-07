@@ -99,18 +99,18 @@ public class PrestamoService {
     public void  validateEstado(Prestamo prestamo, Optional<Prestamo> prestamoInDB){
         if(prestamo.getEstado() == null){
             prestamo.setEstado(prestamoInDB.get().getEstado());
-        } else if (prestamo.getEstado().toUpperCase().equals("SIN VERIFICAR")){
+        } else if (prestamo.getEstado().toUpperCase().equals("SIN DEVOLVER")){
             prestamo.setEstado("SIN VERIFICAR");
-        } else if (prestamo.getEstado().toUpperCase().equals("VERIFICADO")){
+        } else if (prestamo.getEstado().toUpperCase().equals("DEVULETO")){
             prestamo.setEstado("VERIFICADO");
         } else {
-            throw new AttributeNotValidException("El estado del prestamo debe ser SIN VERIFICAR o VERIFICADO");
+            throw new AttributeNotValidException("El estado del prestamo debe ser SIN DEVOLVER o DEVUELTO");
         }
     }
 
     public void validateEstado(Prestamo prestamo){
-        if(prestamo.getEstado() != null && !prestamo.getEstado().toUpperCase().equals("SIN VERIFICAR") && !prestamo.getEstado().toUpperCase().equals("VERIFICADO")){
-            throw new AttributeNotValidException("El estado del prestamo debe ser SIN VERIFICAR o VERIFICADO");
+        if(prestamo.getEstado() != null && !prestamo.getEstado().toUpperCase().equals("SIN DEVOLVER") && !prestamo.getEstado().toUpperCase().equals("DEVUELTO")){
+            throw new AttributeNotValidException("El estado del prestamo debe ser SIN DEVOLVER o DEVUELTO");
         }
     }
 }
