@@ -1,0 +1,6 @@
+./target/
+./.vscode/
+./docker-compose.dev.yml
+./mvnw.cmd
+.env
+.env.local

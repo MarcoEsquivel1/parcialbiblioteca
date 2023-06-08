@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+/http
+
+### Env
+.env
+.env.local
+.env.**
+.envrc
+.envrc.**

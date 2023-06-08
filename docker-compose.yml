@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  mysql-database:
+    image: mysql
+    container_name: mysql-db
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: mySecretPassword
+      MYSQL_DATABASE: parcial-biblioteca
+  adminer:
+    image: adminer
+    ports:
+      - '8085:8080'

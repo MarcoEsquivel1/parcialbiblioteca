@@ -8,9 +8,10 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ParcialbibliotecaApplication {
 	@Bean
-	public ModelMapper modelMapper() {
+	ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(ParcialbibliotecaApplication.class, args);
 	}
