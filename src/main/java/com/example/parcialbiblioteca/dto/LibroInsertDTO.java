@@ -31,5 +31,8 @@ public class LibroInsertDTO {
     @NotNull(message = "El idioma no puede ser nulo")
     @Size(min = 3, max = 50, message = "El idioma debe tener entre 3 y 50 caracteres")
     private String idioma;
+    @NotNull(message = "El stock no puede ser nulo")
+    @Min(value = 1, message = "El stock debe ser mayor o igual a 1")
+    private Integer stock;
 
 }
