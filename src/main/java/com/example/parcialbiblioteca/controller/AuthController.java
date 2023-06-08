@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -48,8 +49,11 @@ public class AuthController {
                 authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.generateToken(authentication);
-
-        return ResponseEntity.ok(new JWTAuthResponseDTO(jwt));
+        List<String> roles = new ArrayList<>();
+        authentication.getAuthorities().forEach(rol -> {
+            roles.add(rol.getAuthority());
+        });
+        return ResponseEntity.ok(new JWTAuthResponseDTO(jwt, roles));
     }
 
     @PostMapping("/register")

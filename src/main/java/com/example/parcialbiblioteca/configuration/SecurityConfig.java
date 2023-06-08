@@ -41,6 +41,26 @@ public class SecurityConfig {
                 .passwordEncoder(passwordEncoder());
     }
 
+//    @Bean
+//    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http.csrf().disable()
+//                .exceptionHandling()
+//                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+//                .and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .authorizeRequests()
+//                .requestMatchers(HttpMethod.GET, "/api/**")
+//                .permitAll()
+//                .requestMatchers("api/auth/**")
+//                .permitAll()
+//                .anyRequest()
+//                .authenticated();
+//        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+//        return http.build();
+//    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
