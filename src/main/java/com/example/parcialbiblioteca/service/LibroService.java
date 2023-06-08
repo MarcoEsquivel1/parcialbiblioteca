@@ -70,11 +70,14 @@ public class LibroService {
             libro.setEstado(libroInDB.get().getEstado());
         } else if (libro.getEstado().toUpperCase().equals("PRESTADO")){
             libro.setEstado("PRESTADO");
+            libro.setStock(libroInDB.get().getStock() - 1);
         } else if (libro.getEstado().toUpperCase().equals("DISPONIBLE")) {
             libro.setEstado("DISPONIBLE");
+            libro.setStock(libroInDB.get().getStock() + 1);
         } else {
             throw new AttributeNotValidException("El estado del libro debe ser PRESTADO o DISPONIBLE");
         }
+
 
         return libroRepository.save(libro);
     }

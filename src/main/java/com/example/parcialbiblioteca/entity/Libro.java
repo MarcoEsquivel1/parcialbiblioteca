@@ -33,6 +33,8 @@ public class Libro {
     private String idioma;
     @Column(name = "estado")
     private String estado;
+    @Column(name = "stock")
+    private Integer stock;
 
     @PrePersist
     public void prePersist() {
