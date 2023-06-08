@@ -20,4 +20,4 @@ RUN ./mvnw clean package -DskipTests
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "parcialbiblioteca-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "./target/parcialbiblioteca-0.0.1-SNAPSHOT.jar"]
