@@ -49,11 +49,8 @@ public class AuthController {
                 authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.generateToken(authentication);
-        List<String> roles = new ArrayList<>();
-        authentication.getAuthorities().forEach(rol -> {
-            roles.add(rol.getAuthority());
-        });
-        return ResponseEntity.ok(new JWTAuthResponseDTO(jwt, roles));
+        Usuario usuario = usuarioRepository.findByEmail(loginDTO.getEmail()).get();
+        return ResponseEntity.ok(new JWTAuthResponseDTO(jwt, usuario));
     }
 
     @PostMapping("/register")
