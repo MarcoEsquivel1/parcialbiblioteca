@@ -37,12 +37,17 @@ public class JwtTokenProvider {
         usuarioData.put("lastName", usuario.getApellido());
 
 
+        ArrayList<String> roles = new ArrayList<>();
+        usuario.getRoles().forEach(rol -> {
+            roles.add(rol.getNombre());
+        });
+
         String token = Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
-                .claim("Data", usuarioData)
-                .claim("Roles", authentication.getAuthorities())
+                .claim("User", usuarioData)
+                .claim("Roles", roles)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
 
